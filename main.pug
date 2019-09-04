@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+  head
+    title FTP Client
+  body
+    div
+      a(href='../') ../
+    each item in files
+      div
+
+          a(href=item.url)= item.name
+    parseInt Upload File
+    form(method='GET', action='')
+      input(name='upload', type='text', placeholder='File Path')
+      input(type='submit')
+    p Add directory
+    form(method='GET', action='')
+      input(name='directory', type='text', placeholder='Directory Name')
+      input(type='submit')
