@@ -5,7 +5,10 @@ const API = require('./api.js');
 const pug = require('pug');
 const fs = require('fs');
 
-const client = new API();
+const argv = require('minimist')(process.argv.slice(2));
+console.log(argv)
+
+const client = new API(argv.h.split(':')[0], argv.h.split(':')[1]);
 app.use(async (req, res) => {
   const serverPath = req.path;
   if (req.query.download) {
@@ -63,7 +66,7 @@ app.use(async (req, res) => {
 client.connect()
   .then(async e => {
     try {
-      await client.login('admin', '1234');
+      await client.login(argv.u, argv.p);
     } catch (e) {
       console.log('Failed to log in.');
       console.log(e);

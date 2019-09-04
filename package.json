@@ -6,10 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Max Rumsey (maxrumsey.xyz) <max@maxrumsey.xyz>",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
+    "minimist": "^1.2.0",
     "open": "^6.4.0",
     "pug": "^2.0.4"
   }
