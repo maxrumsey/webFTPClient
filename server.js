@@ -6,7 +6,6 @@ const pug = require('pug');
 const fs = require('fs');
 
 const argv = require('minimist')(process.argv.slice(2));
-console.log(argv)
 
 const client = new API(argv.h.split(':')[0], argv.h.split(':')[1]);
 app.use(async (req, res) => {
@@ -19,8 +18,6 @@ app.use(async (req, res) => {
   }
   if (req.path === '/favicon.ico') return;
   if (req.query.upload) {
-    console.log(312687965)
-    console.log(req.query.upload)
     const uploadedFile = fs.readFileSync(req.query.upload);
     const fileName = req.query.upload.split('/')[req.query.upload.split('/').length - 1]
     if (!uploadedFile) return res.send('File to be uploaded not found.')
@@ -31,10 +28,8 @@ app.use(async (req, res) => {
   }
   await client.send('CWD ' + serverPath)
   let filesStr = await client.ls();
-  console.log(filesStr)
   filesStr = filesStr.replace(/\r/g, '');
   filesStr = filesStr.split('\n')
-  console.log(typeof filesStr)
   const files = [];
   for (var i = 0; i < filesStr.length; i++) {
     filesStr[i] = filesStr[i].replace(/\s\s+/g, ' ');
@@ -55,7 +50,6 @@ app.use(async (req, res) => {
       })
     }
   }
-  console.log(req.path)
   const rendered = pug.renderFile('main.pug', {
 			files: files ? files : [],
       url: req.path
